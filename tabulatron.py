@@ -10,7 +10,7 @@ class Tabulatron:
     def __init__(self, master):
         # Some basic setup
         self.master = master
-        self.master.option_add("*Font", "Cambria", 10)
+        self.master.option_add("*Font", "Cambria")
 
         # Dictionary definitions
         self.criteria_names = {
@@ -49,16 +49,16 @@ class Tabulatron:
 
         self.criteria_entries = []
 
-        # Create labels and entry fields for 5 projects
+        # Create labels and entry fields for 5 projects side by side
         for project in range(5):
-            project_label = tk.Label(self.criteria_frame, text=f"Project {project + 1}", bg=BG_COLOR, font=("Cambria", 12, "bold"))
+            project_label = tk.Label(self.criteria_frame, text=f"Project {project + 1}", bg=BG_COLOR, font=("Cambria", 10, "bold"))
             project_label.grid(row=0, column=project * 2, columnspan=2, pady=(10, 0))
 
             for i in range(len(self.criteria_names)):
                 label = tk.Label(self.criteria_frame, text=f"{self.criteria_names[i+1]}:", bg=BG_COLOR)
-                label.grid(row=i + 1, column=project * 2, padx=10, pady=5)
-                entry = tk.Entry(self.criteria_frame)
-                entry.grid(row=i + 1, column=project * 2 + 1, padx=10, pady=5)
+                label.grid(row=i + 1, column=project * 2, padx=5, pady=5)
+                entry = tk.Entry(self.criteria_frame, width=10)
+                entry.grid(row=i + 1, column=project * 2 + 1, padx=5, pady=5)
                 self.criteria_entries.append((project, i, entry))
 
         # Submit button
@@ -75,3 +75,11 @@ if __name__ == '__main__':
     root = tk.Tk()
     app = Tabulatron(root)
     root.mainloop()
+
+"""
+    Future features
+    when you press enter it goes to the next entry
+    Submission boxes will be smaller, and only accept integers
+    All fields will fit onto the same screen 
+    
+"""
